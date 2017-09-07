@@ -1,0 +1,9 @@
+[
+    {
+        "model": "foobar.failure",
+        "pk": "ballustrade",
+        "fields": {
+            "description": "ballustrade"
+        }
+    }
+]
