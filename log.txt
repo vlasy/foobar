@@ -1,0 +1,95 @@
+(migrate_test) ➜  foobar git:(master) ✗ python manage.py migrate -v 3
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, foobar, sessions
+Running pre-migrate handlers for application admin
+Running pre-migrate handlers for application auth
+Running pre-migrate handlers for application contenttypes
+Running pre-migrate handlers for application sessions
+Running pre-migrate handlers for application foobar
+Running migrations:
+  Applying contenttypes.0001_initial... OK (0.013s)
+  Applying auth.0001_initial... OK (0.032s)
+  Applying admin.0001_initial... OK (0.023s)
+  Applying admin.0002_logentry_remove_auto_add... OK (0.026s)
+  Applying contenttypes.0002_remove_content_type_name... OK (0.033s)
+  Applying auth.0002_alter_permission_name_max_length... OK (0.017s)
+  Applying auth.0003_alter_user_email_max_length... OK (0.022s)
+  Applying auth.0004_alter_user_username_opts... OK (0.020s)
+  Applying auth.0005_alter_user_last_login_null... OK (0.023s)
+  Applying auth.0006_require_contenttypes_0002... OK (0.005s)
+  Applying auth.0007_alter_validators_add_error_messages... OK (0.041s)
+  Applying auth.0008_alter_user_username_max_length... OK (0.019s)
+  Applying foobar.0001_initial...Traceback (most recent call last):
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such column: confirmed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "manage.py", line 22, in <module>
+    execute_from_command_line(sys.argv)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/__init__.py", line 364, in execute_from_command_line
+    utility.execute()
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/__init__.py", line 356, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/base.py", line 283, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/base.py", line 330, in execute
+    output = self.handle(*args, **options)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/commands/migrate.py", line 204, in handle
+    fake_initial=fake_initial,
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/migrations/executor.py", line 115, in migrate
+    state = self._migrate_all_forwards(state, plan, full_plan, fake=fake, fake_initial=fake_initial)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/migrations/executor.py", line 145, in _migrate_all_forwards
+    state = self.apply_migration(state, migration, fake=fake, fake_initial=fake_initial)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/migrations/executor.py", line 244, in apply_migration
+    state = migration.apply(state, schema_editor)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/migrations/migration.py", line 129, in apply
+    operation.database_forwards(self.app_label, schema_editor, old_state, project_state)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/migrations/operations/special.py", line 193, in database_forwards
+    self.code(from_state.apps, schema_editor)
+  File "/home/stephen/Dropbox/Develop/NSW/foobar/foobar/migrations/0001_initial.py", line 10, in load_fixtures
+    call_command('loaddata', 'initial.json', app_label='foobar')
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/__init__.py", line 131, in call_command
+    return command.execute(*args, **defaults)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/base.py", line 330, in execute
+    output = self.handle(*args, **options)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/commands/loaddata.py", line 69, in handle
+    self.loaddata(fixture_labels)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/commands/loaddata.py", line 109, in loaddata
+    self.load_label(fixture_label)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/management/commands/loaddata.py", line 175, in load_label
+    obj.save(using=self.using)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/core/serializers/base.py", line 205, in save
+    models.Model.save_base(self.object, using=using, raw=True, **kwargs)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/base.py", line 837, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/base.py", line 904, in _save_table
+    forced_update)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/base.py", line 954, in _do_update
+    return filtered._update(values) > 0
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/query.py", line 664, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 1199, in execute_sql
+    cursor = super(SQLUpdateCompiler, self).execute_sql(result_type)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 894, in execute_sql
+    raise original_exception
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 884, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/utils.py", line 80, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/stephen/.virtualenvs/migrate_test/lib/python3.5/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: Problem installing fixture '/home/stephen/Dropbox/Develop/NSW/foobar/foobar/fixtures/initial.json': Could not load foobar.Failure(pk=ballustrade): no such column: confirmed
+(migrate_test) ➜  foobar git:(master) ✗ 
